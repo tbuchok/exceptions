@@ -2,6 +2,12 @@
 
 Experimentation regarding what happens when exceptions are thrown (or not thrown) in different threading environments.
 
+## TL;DR
+
+If an exception is raised in an threaded application, that thread will fail -- but other threads will continue.
+
+In a single-threaded environment, handling these errors is trickier.
+
 ## Why
 
 Running a stack that includes a both multi-threaded and single-threaded (or _psuedo_-single-threaded) can have some tricky nuances. Do we catch uncaught exceptions? Do we allow the server to fallover? What are the the differences?
@@ -25,7 +31,15 @@ This repository contains a trivial example hitting [Slow API](http://slowapi.com
 
 ### /ruby
 
-This repo includes some example using trivial Ruby and Node.js examples. The Ruby code opens up some threads -- as a web server would -- and throws an exception. The ways we can handle this are interesting.
+`$ ruby ruby/standard_sample.rb` trivially shows us opening threads for each of the API requests. When the API request is for a duration of `2.0`, an exception is raised.
+
+Please notice that the other threads complete their execution prior to the exception being raised. The other two threads execute properly, this is great and something enjoy (see more in the Node example).
+
+`$ ruby ruby/abort_on_exception_sample.rb` aborts on the exception to "mimic" more closely the Node.js examples below -- notice how when we abort on exception, the entire process is aborted when a single thread raises an exception.
+
+```ruby
+Thread.abort_on_exception = true
+```
 
 ### /node
 
