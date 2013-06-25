@@ -29,19 +29,19 @@ This repo includes some example using trivial Ruby and Node.js examples. The Rub
 
 ### /node
 
-**_standard-sample.js_** demonstrates the standard in Node.js: passing errors back through as the first argument of the callback.
+`$ node node/standard-sample.js` demonstrates the standard in Node.js: passing errors back through as the first argument of the callback.
 
 ```js
 if (delay === '2.0') return callback(DELIBERATE_ERROR, null);
 ```
 
-**_throw-exception-sample.js_** does exactly what it sounds like -- the exception is thrown rather than passed as an argument to the callback.
+`$ node node/throw-exception-sample.js` does exactly what it sounds like -- the exception is thrown rather than passed as an argument to the callback.
 
 ```js
 if (delay === '2.0') throw new Error(DELIBERATE_ERROR);
 ```
 
-**_catch-uncaught-exception-sample.js_** is the most peculiar of the bunch. Notice that the code now catches uncaught exceptions with 
+`$ node node/catch-uncaught-exception-sample.js` is the most peculiar of the bunch. Notice that the code now catches uncaught exceptions with 
 
 ```js
 process.on('uncaughtException', function(err){
