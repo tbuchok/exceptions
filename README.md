@@ -52,3 +52,9 @@ process.on('uncaughtException', function(err){
 This effectively catches the thrown exception on Line 9 of the file. But notice that the first API request finishes -- the callbacks that had already been added to the stack continue, and anything afterwards are blown away. This trivial example demonstrates why using `process.on('uncaughtException', ...)` should be [viewed as very dangerous](http://nodejs.org/api/process.html#process_event_uncaughtexception).
 
 ## Contribute
+
+Ask _Why?_! Challenge these ideas!
+
+If you have another language or method of demonstrating exceptions -- please provide! Or better yet, illustrate something even further.
+
+Pull requests welcome.
