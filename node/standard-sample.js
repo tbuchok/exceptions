@@ -2,7 +2,7 @@ var http = require('http')
   , DELIBERATE_ERROR = 'Causing a deliberate error';
 
 var apiRequest = function(delay, callback) {
-  if (delay === '2.0') return callback(DELIBERATE_ERROR, null)
+  if (delay === '2.0') return callback(DELIBERATE_ERROR, null);
   console.log('Fetching: http://slowapi.com/delay/' + delay);
   var url = 'http://slowapi.com/delay/' + delay;
   http.get(url, function(res) {

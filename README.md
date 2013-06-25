@@ -15,12 +15,12 @@ This repository contains a trivial example hitting [Slow API](http://slowapi.com
 .
 ├── README.md
 ├── node
+│   ├── catch-uncaught-exception-sample.js
 │   ├── standard-sample.js
-│   ├── throw-exception-sample.js
-│   └── uncaught-exception-sample.js
+│   └── throw-exception-sample.js
 └── ruby
-    ├── abort-on-exception-sample.rb
-    └── standard-sample.rb
+    ├── abort_on_exception_sample.rb
+    └── standard_sample.rb
 ```
 
 ### /ruby
@@ -29,15 +29,26 @@ This repo includes some example using trivial Ruby and Node.js examples. The Rub
 
 ### /node
 
-_standard-sample.js_ demonstrates the standard in Node.js: passing errors back through as the first argument of the callback, in the style of 
+**_standard-sample.js_** demonstrates the standard in Node.js: passing errors back through as the first argument of the callback.
 
 ```js
-callback(err, ...args);
+if (delay === '2.0') return callback(DELIBERATE_ERROR, null);
 ```
 
-_
+**_throw-exception-sample.js_** does exactly what it sounds like -- the exception is thrown rather than passed as an argument to the callback.
 
-On the other hand, the Node.js examples show the value in passing an `err` value in callbacks -- rather than throwing exceptions. Finally, an example of why using `process.on('uncaughtException')` should be [view as very dangerous](http://nodejs.org/api/process.html#process_event_uncaughtexception).
+```js
+if (delay === '2.0') throw new Error(DELIBERATE_ERROR);
+```
 
+**_catch-uncaught-exception-sample.js_** is the most peculiar of the bunch. Notice that the code now catches uncaught exceptions with 
+
+```js
+process.on('uncaughtException', function(err){
+  console.log('Uncaught Exception:', err);
+});
+```
+
+This effectively catches the thrown exception on Line 9 of the file. But notice that the first API request finishes -- the callbacks that had already been added to the stack continue, and anything afterwards are blown away. This trivial example demonstrates why using `process.on('uncaughtException', ...)` should be [viewed as very dangerous](http://nodejs.org/api/process.html#process_event_uncaughtexception).
 
 ## Contribute
