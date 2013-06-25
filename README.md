@@ -35,7 +35,7 @@ _standard-sample.js_ demonstrates the standard in Node.js: passing errors back t
 callback(err, ...args);
 ```
 
-
+_
 
 On the other hand, the Node.js examples show the value in passing an `err` value in callbacks -- rather than throwing exceptions. Finally, an example of why using `process.on('uncaughtException')` should be [view as very dangerous](http://nodejs.org/api/process.html#process_event_uncaughtexception).
 
