@@ -65,6 +65,18 @@ process.on('uncaughtException', function(err){
 
 This effectively catches the thrown exception on Line 9 of the file. But notice that the first API request finishes -- the callbacks that had already been added to the stack continue, and anything afterwards are blown away. This trivial example demonstrates why using `process.on('uncaughtException', ...)` should be [viewed as very dangerous](http://nodejs.org/api/process.html#process_event_uncaughtexception).
 
+Why? See how this leaks:
+
+```bash
+$ node node/leak.js
+```
+
+And in a separate process:
+
+```bash
+$ curl localhost:8000 # Request hangs
+```
+
 ## Contribute
 
 Ask _Why?_! Challenge these ideas!
