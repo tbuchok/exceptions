@@ -84,3 +84,9 @@ Ask _Why?_! Challenge these ideas!
 If you have another language or method of demonstrating exceptions -- please provide! Or better yet, illustrate something even further.
 
 Pull requests welcome.
+
+
+## Resources
+
+* [Exceptions and resource leaks in Javascript and Node.js](http://www.teknically-speaking.com/2013/04/javascript-and-nodejs-exceptions-and.html)
+* [Why would an exception cause resource leaks in Node.js?](http://stackoverflow.com/questions/15825752/why-would-an-exception-cause-resource-leaks-in-node-js/15918863)
